@@ -1,11 +1,29 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+import ComingSoon from '../components/ComingSoon.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// La Lucha Sanguchería - Coming Soon Page
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>La Lucha Sanguchería | Próximamente</title>
+    <meta name="description" content="La Lucha Sanguchería Criolla - Muy pronto estaremos con ustedes.">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="La Lucha Sanguchería | Próximamente">
+    <meta property="og:description" content="La Lucha Sanguchería Criolla - Muy pronto estaremos con ustedes.">
+    <meta property="og:image" content="/fondo.png">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <ComingSoon />
+</body>
+</html>
