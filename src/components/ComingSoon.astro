@@ -8,20 +8,22 @@
   </div>
 
   <main class="content">
-    <div class="logo-container">
-      <img src="/logo.svg" alt="La Lucha Sanguchería" class="logo" />
-    </div>
+    <div class="brand-header">
+      <div class="logo-container">
+        <img src="/logo.svg" alt="La Lucha Sanguchería" class="logo" />
+      </div>
 
-    <div class="title-container">
-      <img src="/proximamente.svg" alt="PRÓXIMAMENTE" class="title-img" />
+      <div class="title-container">
+        <img src="/proximamente.svg" alt="PRÓXIMAMENTE" class="title-img" />
+      </div>
     </div>
 
     <div class="button-group slide-up">
       <a href="#" class="btn btn-1" aria-label="Ir a Facturación">
-        <img src="/facturacion.svg" alt="FACTURACIÓN" class="btn-text-img" />
+        <img src="/facturacion.svg" alt="FACTURACIÓN" class="btn-text-img img-facturacion" />
       </a>
       <a href="#" class="btn btn-2" aria-label="Ir a Libro de Reclamaciones">
-        <img src="/libro-reclamaciones.svg" alt="LIBRO DE RECLAMACIONES" class="btn-text-img" />
+        <img src="/libro-reclamaciones.svg" alt="LIBRO DE RECLAMACIONES" class="btn-text-img img-reclamaciones" />
       </a>
     </div>
   </main>
@@ -43,15 +45,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Brand in center */
     text-align: center;
-    gap: 1rem;
     width: 100%;
     height: 100%;
+    position: relative;
+  }
+
+  .brand-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Extremely tight gap */
+    transform: translateY(-10%); /* Lift slightly from dead center */
   }
 
   .logo-container {
-    width: clamp(140px, 18vw, 220px);
-    margin-top: auto; /* Push logo/title part to the center by balancing with bottom margin */
+    width: clamp(140px, 15vw, 200px);
   }
 
   .logo {
@@ -62,8 +72,8 @@
   }
 
   .title-container {
-    width: clamp(240px, 40vw, 480px);
-    margin-bottom: 2rem;
+    width: clamp(250px, 30vw, 600px);
+    margin-top: 1rem; /* Overlap slightly with logo as in image */
   }
 
   .title-img {
@@ -74,12 +84,15 @@
   }
 
   .button-group {
+    position: absolute;
+    bottom: 4rem;
     display: flex;
     gap: 1.5rem;
-    margin-top: auto; /* Push to the bottom */
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     width: 100%;
+    padding: 0 1rem;
   }
 
   .btn {
@@ -88,19 +101,21 @@
     justify-content: center;
     text-decoration: none;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
-    min-width: 180px;
-    height: 42px;
+    height: 34px; /* Slimmer buttons as in image */
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
     padding: 0 1.5rem;
+    box-sizing: border-box;
   }
 
   .btn-1 {
+    width: 160px;
     background-image: url('/boton1.png');
   }
 
   .btn-2 {
+    width: 250px;
     background-image: url('/boton2.png');
   }
 
@@ -110,10 +125,18 @@
   }
 
   .btn-text-img {
-    height: 30%; 
     width: auto;
     display: block;
     filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
+  }
+
+  /* Clases específicas para que puedas ajustar los tamaños individualmente */
+  .img-facturacion {
+    height: 38%;
+  }
+
+  .img-reclamaciones {
+    height: 31%;
   }
 
   @media (max-width: 768px) {
@@ -122,27 +145,16 @@
     }
 
     .button-group {
-      flex-direction: column;
+      bottom: 2rem;
       gap: 1rem;
-      margin-top: auto;
-      align-items: center;
-    }
-    
-    .logo-container {
-      width: clamp(120px, 25vw, 180px);
     }
 
-    .title-container {
-      width: clamp(200px, 70vw, 350px);
+    .img-facturacion {
+      height: 38%;
     }
 
-    .btn {
-      min-width: 200px;
-      height: 48px;
-    }
-
-    .btn-text-img {
-      height: 35%;
+    .img-reclamaciones {
+      height: 31%;
     }
   }
 
