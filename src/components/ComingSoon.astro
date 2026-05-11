@@ -57,7 +57,7 @@
     flex-direction: column;
     align-items: center;
     gap: 0; /* Extremely tight gap */
-    transform: translateY(-10%); /* Lift slightly from dead center */
+    transform: translateY(-35%); /* Lifted higher per user request */
   }
 
   .logo-container {
@@ -105,7 +105,7 @@
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 0 1.5rem;
+    padding: 0;
     box-sizing: border-box;
   }
 
@@ -128,11 +128,13 @@
     width: auto;
     display: block;
     filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
+    transform: translateY(1px); /* Slight adjustment for perfect visual centering */
   }
 
   /* Clases específicas para que puedas ajustar los tamaños individualmente */
   .img-facturacion {
     height: 38%;
+    transform: translateY(-1px);
   }
 
   .img-reclamaciones {
