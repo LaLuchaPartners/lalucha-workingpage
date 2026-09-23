@@ -1,0 +1,40 @@
+---
+import '../../styles/global.css';
+import CartaMenu from '../../components/CartaMenu.astro';
+
+const imageSrc = '/carta/en/carta.png';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" href="/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>La Lucha Sanguchería | Menu</title>
+    <meta name="description" content="La Lucha Sanguchería Criolla menu.">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="La Lucha Sanguchería | Menu">
+    <meta property="og:description" content="La Lucha Sanguchería Criolla menu.">
+    <meta property="og:image" content="/fondo.webp">
+    <meta property="og:type" content="website">
+
+    <style is:global>
+      html, body {
+        background-color: #ffffff;
+      }
+    </style>
+</head>
+<body>
+    <CartaMenu
+      lang="en"
+      imageSrc={imageSrc}
+      imageAlt="La Lucha Sanguchería menu"
+      backButtonSrc="/carta/en/boton-regresar.png"
+    />
+</body>
+</html>

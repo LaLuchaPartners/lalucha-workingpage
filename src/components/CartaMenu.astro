@@ -1,0 +1,85 @@
+---
+/* src/components/CartaMenu.astro */
+
+interface Props {
+  lang: 'es' | 'en';
+  imageSrc?: string;
+  imageAlt: string;
+  backButtonSrc: string;
+}
+
+const { lang, imageSrc, imageAlt, backButtonSrc } = Astro.props;
+
+const emptyMessage = {
+  es: 'La carta estará disponible muy pronto.',
+  en: 'The menu will be available soon.',
+};
+---
+
+<div class="carta-wrapper fade-in">
+  <a href="/carta" class="back-link" aria-label="Volver">
+    <img src={backButtonSrc} alt="" class="back-icon" />
+  </a>
+
+  {imageSrc ? (
+    <img src={imageSrc} alt={imageAlt} class="carta-image" />
+  ) : (
+    <p class="carta-empty">{emptyMessage[lang]}</p>
+  )}
+</div>
+
+<style>
+  .carta-wrapper {
+    --image-top-offset: 3.5rem;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background-color: #ffffff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-top: var(--image-top-offset);
+  }
+
+  .back-link {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    z-index: 2;
+    display: block;
+    width: clamp(44px, 12vw, 56px);
+    height: clamp(44px, 12vw, 56px);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .back-link:hover,
+  .back-link:active {
+    transform: scale(1.06);
+  }
+
+  .back-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .carta-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .carta-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 2rem;
+    color: #333333;
+    font-size: 1rem;
+  }
+</style>

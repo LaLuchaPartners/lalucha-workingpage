@@ -1,0 +1,34 @@
+---
+import '../../styles/global.css';
+import CartaLangSelect from '../../components/CartaLangSelect.astro';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" href="/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>La Lucha Sanguchería | Carta / Menu</title>
+    <meta name="description" content="Elige el idioma de la carta: Español o English.">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="La Lucha Sanguchería | Carta / Menu">
+    <meta property="og:description" content="Elige el idioma de la carta: Español o English.">
+    <meta property="og:image" content="/fondo.webp">
+    <meta property="og:type" content="website">
+
+    <style is:global>
+      body {
+        background-color: #ffffff;
+        overflow-y: auto;
+      }
+    </style>
+</head>
+<body>
+    <CartaLangSelect />
+</body>
+</html>
