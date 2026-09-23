@@ -2,7 +2,7 @@
 import '../../styles/global.css';
 import CartaMenu from '../../components/CartaMenu.astro';
 
-const imageSrc = '/carta/en/carta.png';
+const imageSlices = ['/carta/en/carta-1.webp', '/carta/en/carta-2.webp'];
 ---
 
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ const imageSrc = '/carta/en/carta.png';
 <body>
     <CartaMenu
       lang="en"
-      imageSrc={imageSrc}
+      imageSlices={imageSlices}
       imageAlt="La Lucha Sanguchería menu"
       backButtonSrc="/carta/en/boton-regresar.png"
     />
