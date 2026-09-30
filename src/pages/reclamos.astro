@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import LibroReclamaciones from '../components/LibroReclamaciones.astro';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" href="/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>Lucha Partners | Libro de Reclamaciones</title>
+    <meta name="description" content="Libro de Reclamaciones de Lucha Partners.">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Lucha Partners | Libro de Reclamaciones">
+    <meta property="og:description" content="Libro de Reclamaciones de Lucha Partners.">
+    <meta property="og:image" content="/fondo.webp">
+    <meta property="og:type" content="website">
+
+    <style is:global>
+      html, body {
+        background-color: #ffffff;
+        color: #333333;
+        overflow-y: auto;
+        height: auto;
+      }
+    </style>
+</head>
+<body>
+    <LibroReclamaciones />
+</body>
+</html>

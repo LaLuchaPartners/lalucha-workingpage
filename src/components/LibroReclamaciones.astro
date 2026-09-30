@@ -1,0 +1,523 @@
+---
+/* src/components/LibroReclamaciones.astro */
+import { marcas } from '../data/tiendas';
+
+const tiposDocumento = ['DNI', 'CE', 'Pasaporte', 'RUC', 'Otro'];
+---
+
+<div class="reclamos-wrapper">
+  <header class="reclamos-header">
+    <a href="/" class="header-logo" aria-label="Lucha Partners - Inicio">
+      <img src="/reclamos/logo-lucha-partners.webp" alt="Lucha Partners" />
+    </a>
+    <h1 class="header-title">Libro de Reclamaciones</h1>
+    <span class="header-spacer" aria-hidden="true"></span>
+  </header>
+
+  <main class="reclamos-main fade-in">
+    <form id="reclamo-form" class="reclamo-form" novalidate>
+      <div class="form-meta">
+        <span>N° de reclamo: <strong id="reclamo-numero">Se asignará al enviar</strong></span>
+        <span class="required-note"><span class="req">*</span> Campos obligatorios</span>
+      </div>
+
+      <fieldset class="form-section">
+        <legend>Datos del local</legend>
+        <div class="grid">
+          <label class="field">
+            <span>Marca <span class="req">*</span></span>
+            <select name="marca" id="select-marca" required>
+              <option value="">Selecciona una marca</option>
+              {marcas.map((marca) => <option value={marca.nombre}>{marca.nombre}</option>)}
+            </select>
+          </label>
+          <label class="field">
+            <span>Ubicación <span class="req">*</span></span>
+            <select name="ubicacion" id="select-ubicacion" required disabled>
+              <option value="">Selecciona una ubicación</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Dirección <span class="req">*</span></span>
+            <select name="direccion" id="select-direccion" required disabled>
+              <option value="">Selecciona un local</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Datos del consumidor</legend>
+        <div class="grid">
+          <label class="field">
+            <span>Nombres <span class="req">*</span></span>
+            <input type="text" name="nombres" autocomplete="given-name" required />
+          </label>
+          <label class="field">
+            <span>Apellidos <span class="req">*</span></span>
+            <input type="text" name="apellidos" autocomplete="family-name" required />
+          </label>
+          <label class="field">
+            <span>Distrito <span class="req">*</span></span>
+            <input type="text" name="distrito" autocomplete="address-level3" required />
+          </label>
+          <label class="field">
+            <span>Dirección <span class="req">*</span></span>
+            <input type="text" name="direccion_consumidor" autocomplete="street-address" required />
+          </label>
+          <label class="field">
+            <span>Email <span class="req">*</span></span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label class="field">
+            <span>Teléfono <span class="req">*</span></span>
+            <input type="tel" name="telefono" autocomplete="tel" inputmode="tel" pattern="[0-9+ ]{6,15}" required />
+          </label>
+          <label class="field">
+            <span>Documento de identidad <span class="req">*</span></span>
+            <select name="tipo_documento" required>
+              <option value="">Selecciona</option>
+              {tiposDocumento.map((tipo) => <option value={tipo}>{tipo}</option>)}
+            </select>
+          </label>
+          <label class="field">
+            <span>Número de documento <span class="req">*</span></span>
+            <input type="text" name="numero_documento" inputmode="numeric" required />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Identificación del bien contratado</legend>
+        <div class="grid">
+          <label class="field">
+            <span>Bien contratado <span class="req">*</span></span>
+            <select name="bien_contratado" required>
+              <option value="">Selecciona</option>
+              <option value="Producto">Producto</option>
+              <option value="Servicio">Servicio</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Monto reclamado (S/) <span class="req">*</span></span>
+            <input type="number" name="monto" min="0" step="0.01" inputmode="decimal" required />
+          </label>
+          <label class="field field-full">
+            <span>Descripción del bien contratado <span class="req">*</span></span>
+            <input type="text" name="descripcion_bien" required />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Detalle del reclamo</legend>
+        <div class="grid">
+          <label class="field">
+            <span>Tipo <span class="req">*</span></span>
+            <select name="tipo" required>
+              <option value="">Selecciona</option>
+              <option value="Queja">Queja</option>
+              <option value="Reclamo">Reclamo</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Fecha <span class="req">*</span></span>
+            <input type="date" name="fecha" id="input-fecha" required />
+          </label>
+          <label class="field">
+            <span>¿Por qué medio fue atendido? <span class="req">*</span></span>
+            <select name="medio_atencion" required>
+              <option value="">Selecciona</option>
+              <option value="Salón">Salón</option>
+              <option value="Para llevar">Para llevar</option>
+            </select>
+          </label>
+          <p class="field-full hint">
+            <strong>Reclamo:</strong> disconformidad relacionada a los productos o servicios.
+            <strong>Queja:</strong> disconformidad no relacionada a los productos o servicios, o malestar respecto a la atención al público.
+          </p>
+          <label class="field field-full">
+            <span>Detalle <span class="req">*</span></span>
+            <textarea name="detalle" rows="6" required></textarea>
+          </label>
+          <label class="field field-full">
+            <span>Imagen (opcional, máx. 5 MB)</span>
+            <input type="file" name="imagen" id="input-imagen" accept="image/*" />
+          </label>
+          <label class="field field-full">
+            <span>Pedido del cliente <span class="req">*</span></span>
+            <textarea name="pedido" rows="4" required></textarea>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section provider-section">
+        <legend>Observaciones y acciones adoptadas por el proveedor</legend>
+        <p class="hint">Esta sección será completada por Lucha Partners.</p>
+      </fieldset>
+
+      <!-- Campo trampa para bots: no lo completan las personas -->
+      <input type="text" name="sitio_web" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Enviar</button>
+    </form>
+
+    <section id="reclamo-exito" class="reclamo-exito" hidden>
+      <h2>¡Gracias! Registramos tu <span id="exito-tipo">reclamo</span></h2>
+      <p class="exito-numero" id="exito-numero"></p>
+      <p id="exito-mensaje"></p>
+      <p class="hint">Te responderemos en un plazo máximo de 15 días hábiles.</p>
+    </section>
+  </main>
+</div>
+
+<script type="application/json" id="tiendas-data" set:html={JSON.stringify(marcas)}></script>
+
+<script>
+  import type { Marca } from '../data/tiendas';
+
+  const marcas: Marca[] = JSON.parse(document.getElementById('tiendas-data')!.textContent || '[]');
+
+  const form = document.getElementById('reclamo-form') as HTMLFormElement;
+  const selMarca = document.getElementById('select-marca') as HTMLSelectElement;
+  const selUbicacion = document.getElementById('select-ubicacion') as HTMLSelectElement;
+  const selDireccion = document.getElementById('select-direccion') as HTMLSelectElement;
+  const inputFecha = document.getElementById('input-fecha') as HTMLInputElement;
+  const status = document.getElementById('form-status') as HTMLParagraphElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const inputImagen = document.getElementById('input-imagen') as HTMLInputElement;
+  const MAX_IMAGEN_BYTES = 5 * 1024 * 1024;
+
+  const fillSelect = (select: HTMLSelectElement, placeholder: string, values: string[]) => {
+    select.replaceChildren(new Option(placeholder, ''), ...values.map((v) => new Option(v, v)));
+    select.disabled = values.length === 0;
+    // Si solo hay una opción, se selecciona automáticamente
+    if (values.length === 1) {
+      select.value = values[0];
+      select.dispatchEvent(new Event('change'));
+    }
+  };
+
+  selMarca.addEventListener('change', () => {
+    const marca = marcas.find((m) => m.nombre === selMarca.value);
+    fillSelect(selDireccion, 'Selecciona un local', []);
+    fillSelect(selUbicacion, 'Selecciona una ubicación', marca ? marca.ubicaciones.map((u) => u.nombre) : []);
+  });
+
+  selUbicacion.addEventListener('change', () => {
+    const marca = marcas.find((m) => m.nombre === selMarca.value);
+    const ubicacion = marca?.ubicaciones.find((u) => u.nombre === selUbicacion.value);
+    const direcciones = ubicacion?.direcciones ?? [];
+    fillSelect(
+      selDireccion,
+      ubicacion && direcciones.length === 0 ? 'Próximamente' : 'Selecciona un local',
+      direcciones,
+    );
+  });
+
+  // Fecha por defecto: hoy (hora local)
+  const hoy = new Date();
+  hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
+  inputFecha.value = hoy.toISOString().slice(0, 10);
+  inputFecha.max = inputFecha.value;
+
+  const mostrarError = (mensaje: string) => {
+    status.textContent = mensaje;
+    status.classList.add('is-error');
+  };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    status.className = 'form-status';
+    status.textContent = '';
+
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      mostrarError('Por favor completa todos los campos obligatorios.');
+      form.querySelector<HTMLElement>(':invalid')?.focus();
+      return;
+    }
+
+    const imagen = inputImagen.files?.[0];
+    if (imagen && imagen.size > MAX_IMAGEN_BYTES) {
+      mostrarError('La imagen no debe superar los 5 MB.');
+      inputImagen.focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    try {
+      const respuesta = await fetch('/reclamos/enviar.php', { method: 'POST', body: new FormData(form) });
+      const resultado = await respuesta.json().catch(() => null);
+
+      if (!respuesta.ok || !resultado?.ok) {
+        throw new Error(resultado?.mensaje || 'No se pudo enviar el reclamo. Inténtalo nuevamente.');
+      }
+
+      const tipo = (form.elements.namedItem('tipo') as HTMLSelectElement).value.toLowerCase();
+      const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+      document.getElementById('reclamo-numero')!.textContent = resultado.numero;
+      document.getElementById('exito-tipo')!.textContent = tipo;
+      document.getElementById('exito-numero')!.textContent = `N° ${resultado.numero}`;
+      document.getElementById('exito-mensaje')!.textContent = resultado.constanciaEnviada
+        ? `Enviamos una copia de tu hoja de reclamación a ${email}.`
+        : 'Guarda este número como constancia de tu registro.';
+
+      form.hidden = true;
+      document.getElementById('reclamo-exito')!.hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      mostrarError(error instanceof Error ? error.message : 'No se pudo enviar el reclamo. Inténtalo nuevamente.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar';
+    }
+  });
+</script>
+
+<style>
+  .reclamos-wrapper {
+    --red: #d7282f;
+    --ink: #333333;
+    --muted: #6b6b6b;
+    --line: #dcdcdc;
+    --soft: #f6f6f6;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: #ffffff;
+    color: var(--ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .reclamos-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+    border-bottom: 1px solid var(--line);
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-logo {
+    justify-self: start;
+    display: block;
+    width: clamp(110px, 22vw, 200px);
+  }
+
+  .header-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .header-title {
+    text-align: center;
+    font-size: clamp(1.05rem, 3.2vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .reclamos-main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .form-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .form-meta strong {
+    color: var(--ink);
+  }
+
+  .req {
+    color: var(--red);
+  }
+
+  .form-section {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-section legend {
+    padding: 0 0.5rem;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--red);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .field-full {
+    grid-column: 1 / -1;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--ink);
+    background-color: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.6rem 0.7rem;
+    width: 100%;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input[type='file'] {
+    padding: 0.5rem;
+    background-color: var(--soft);
+  }
+
+  select:disabled {
+    background-color: var(--soft);
+    color: var(--muted);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid var(--red);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+
+  .was-validated :invalid {
+    border-color: var(--red);
+  }
+
+  .hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .provider-section {
+    background-color: var(--soft);
+  }
+
+  .form-status {
+    min-height: 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .form-status.is-error {
+    color: var(--red);
+  }
+
+  .submit-btn {
+    display: block;
+    margin: 0 auto;
+    min-width: 200px;
+    padding: 0.85rem 2rem;
+    font: inherit;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    background-color: var(--red);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .reclamo-exito {
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 2.5rem 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .reclamo-exito h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .reclamo-exito p {
+    margin-bottom: 0.75rem;
+  }
+
+  .exito-numero {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--red);
+  }
+
+  .submit-btn:not(:disabled):hover,
+  .submit-btn:not(:disabled):active {
+    transform: scale(1.03);
+    filter: brightness(0.95);
+  }
+
+  @media (max-width: 520px) {
+    .reclamos-header {
+      grid-template-columns: auto 1fr;
+    }
+    .header-spacer {
+      display: none;
+    }
+    .header-title {
+      text-align: center;
+      padding-right: 0.5rem;
+    }
+  }
+</style>

@@ -21,3 +21,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Libro de Reclamaciones (credenciales SMTP)
+reclamos-config.php
