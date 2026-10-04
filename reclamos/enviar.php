@@ -27,7 +27,7 @@ header('Cache-Control: no-store');
 const PREFIJO = 'LR';
 const PRIMER_NUMERO = 2779;
 const DESTINATARIOS = ['admin@lalucha.com.pe', 'atencionclientes@lalucha.com.pe'];
-const ARCHIVO = 'libroreclamaciones@lalucha.com.pe';
+const ARCHIVO = 'librodereclamaciones@lalucha.com.pe';
 const MAX_IMAGEN_BYTES = 5 * 1024 * 1024;
 const TIPOS_IMAGEN = [
     'image/jpeg' => 'jpg',
