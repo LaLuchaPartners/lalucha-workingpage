@@ -14,12 +14,12 @@ return [
     'smtp_host'   => 'mail.zoffice.cloud',
     'smtp_port'   => 465,
     'smtp_secure' => 'ssl', // 'ssl' para 465, 'tls' para 587
-    'smtp_user'   => 'admin@lalucha.com.pe',
+    'smtp_user'   => 'libroreclamaciones@lalucha.com.pe',
     'smtp_pass'   => '',
 
     // Remitente que verán los destinatarios
-    'from_email'  => 'admin@lalucha.com.pe',
-    'from_name'   => 'Lucha Partners',
+    'from_email'  => 'libroreclamaciones@lalucha.com.pe',
+    'from_name'   => 'Libro de Reclamaciones – Lucha Partners',
 
     // Opcional: carpeta donde se guardan los reclamos, imágenes y el contador.
     // Por defecto: ../reclamos-data (fuera de public_html)

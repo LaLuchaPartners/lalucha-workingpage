@@ -6,6 +6,8 @@
  *   1. el reclamo a los correos de Lucha Partners (DESTINATARIOS)
  *   2. una constancia al correo del consumidor
  *
+ * Ambos correos van con copia oculta a ARCHIVO, cuya bandeja funciona como archivo del libro.
+ *
  * La configuración SMTP vive fuera del repositorio, en reclamos-config.php
  * (ver server/reclamos-config.example.php).
  */
@@ -25,6 +27,7 @@ header('Cache-Control: no-store');
 const PREFIJO = 'LR';
 const PRIMER_NUMERO = 2779;
 const DESTINATARIOS = ['admin@lalucha.com.pe', 'atencionclientes@lalucha.com.pe'];
+const ARCHIVO = 'libroreclamaciones@lalucha.com.pe';
 const MAX_IMAGEN_BYTES = 5 * 1024 * 1024;
 const TIPOS_IMAGEN = [
     'image/jpeg' => 'jpg',
@@ -277,7 +280,7 @@ function crearCorreo(array $config): PHPMailer
         $correo->Username = $config['smtp_user'] ?? '';
         $correo->Password = $config['smtp_pass'] ?? '';
     }
-    $correo->setFrom($config['from_email'] ?? 'admin@lalucha.com.pe', $config['from_name'] ?? 'Lucha Partners');
+    $correo->setFrom($config['from_email'] ?? ARCHIVO, $config['from_name'] ?? 'Lucha Partners');
     $correo->isHTML(true);
     return $correo;
 }
@@ -292,6 +295,7 @@ try {
     foreach (DESTINATARIOS as $destinatario) {
         $correo->addAddress($destinatario);
     }
+    $correo->addBCC(ARCHIVO);
     $correo->addReplyTo($datos['email'], $consumidor);
     $correo->Subject = "[$codigo] Nueva {$datos['tipo']} – {$datos['marca']} · {$datos['direccion']}";
     $correo->Body = $html;
@@ -311,6 +315,7 @@ try {
     [$html, $texto] = cuerpoReclamo($codigo, $registrado, $datos, $intro);
     $correo = crearCorreo($config);
     $correo->addAddress($datos['email'], $consumidor);
+    $correo->addBCC(ARCHIVO);
     $correo->addReplyTo(DESTINATARIOS[1], 'Atención al Cliente – Lucha Partners');
     $correo->Subject = "Constancia de tu {$datos['tipo']} $codigo – Lucha Partners";
     $correo->Body = $html;
